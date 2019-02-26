@@ -17,7 +17,7 @@ class App extends Component {
         <BrowserRouter>
             <div className="container">
 				<nav>
-					<ul>
+					<ul className="menu_deco">
 					<li><Link  to={'/'}>Home page</Link>  </li>
                         <li><Link  to={'/about'}>About page</Link>  </li>
 
