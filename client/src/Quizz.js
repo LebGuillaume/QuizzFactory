@@ -19,17 +19,17 @@ class Question extends Component{
                 <form onSubmit={e => this.props.nextQuestion(e)}>
 
                 <h3>{this.props.q.question}</h3>
-                <ul>
+                <ul className="question_list">
                 {this.props.q.txtAnswers.map( x =>{
-                   return <li> <input type='checkbox' id={x} name={x}/>  <label for={x}>{x}</label></li>
+                   return <li> <input  type='checkbox' id={x} name={x}/>  <label for={x}>{x}</label></li>
 
                 })}
                 {this.props.q.imgAnswers.map( x =>{
-                        return <li> <input type='checkbox' id={x} name={x}/>  <label for={x}><img src={HTTP_SERVER_PORT_PICTURES + x} /></label></li>
+                        return <li> <input  type='checkbox' id={x} name={x}/>  <label for={x}>question</label><img src={HTTP_SERVER_PORT_PICTURES + x} /></li>
 
                 })}
                 </ul>
-                    <input type="submit"  value="Next question"/>
+                    <input id="button" type="submit"  value="Next question"/>
                 </form>
             </div>
         );
