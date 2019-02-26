@@ -6,14 +6,17 @@
   "scripts": {
     "database": "mongod --smallfiles",
     "server": "nodemon server.js",
-    "reinitDB": "mongo localhost:27017/quizz db/data.js"
+    "reinitDB": "mongo quizz db/data.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.4.4",
     "nodemon": "^1.18.9"
   }
