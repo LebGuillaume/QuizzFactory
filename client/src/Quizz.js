@@ -49,12 +49,10 @@ class Quizz extends Component{
     }
 
     isEquivalent(a, b) {
-        console.log("A");
         // Create arrays of property names
         if (a.length != b.length) {
             return false;
         }
-        console.log("B");
 
         for (var i = 0; i < a.length; i++) {
 
@@ -62,8 +60,6 @@ class Quizz extends Component{
                 return false;
             }
         }
-
-        console.log("C");
 
         // If we made it this far, objects
         // are considered equivalent
@@ -73,23 +69,29 @@ class Quizz extends Component{
 
 
     NextQuestion(e) {
-            let choices = [];
-            for(let i=0;i<e.target.elements.length;i++){
+        e.preventDefault();
+        let choices = [];
+
+
+        for(let i=0;i<e.target.elements.length;i++){
                 if(e.target.elements[i].checked){
                     choices.push(i);
                 }
+
+
             }
-
-
-            if(this.isEquivalent(choices,this.quizz.questions[this.state.current].solutions)){
+        if(choices.length==0){
+            alert("You must check at least one checkbox.");
+            return false;
+        }
+        if(this.isEquivalent(choices,this.quizz.questions[this.state.current].solutions)){
                 let newScore = this.state.score + this.quizz.questions[this.state.current].points;
                 console.log(newScore);
                 this.setState({score : newScore});
+
                 console.log(newScore);
 
             }
-
-            e.preventDefault();
             let Newcurr = this.state.current + 1;
 
             this.setState({current : Newcurr});

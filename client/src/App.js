@@ -15,7 +15,7 @@ class App extends Component {
     render() {
 	return (
         <BrowserRouter>
-            <div>
+            <div className="container">
 				<nav>
 					<ul>
 					<li><Link  to={'/'}>Home page</Link>  </li>
