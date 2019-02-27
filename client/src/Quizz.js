@@ -16,7 +16,7 @@ class Question extends Component {
 
 
         return (
-            <div className="container">
+
                 <div>
                     <form onSubmit={e => this.props.nextQuestion(e)}>
 
@@ -40,7 +40,7 @@ class Question extends Component {
                         <input id="button" type="submit" value="Next question"/>
                     </form>
                 </div>
-            </div>
+
         );
     }
 
@@ -152,13 +152,12 @@ class Quizz extends Component {
         }
         return (
 
-            <div className="container">
+
                 <div className="QuizzName">
                     {this.state.quizz.name}
                     <Question q={this.state.quizz.questions[this.state.current]} nextQuestion={this.NextQuestion}/>
                 </div>
 
-                </div>
 
 
 

@@ -91,7 +91,7 @@ class AddQuiz extends React.Component
             return <Redirect to="/"/>
         }
             return(
-                <div>
+                <div className="container">
                     <form className="form-horizontal" onSubmit={e=>this.addquiz(e)}>
                         <fieldset>
 
