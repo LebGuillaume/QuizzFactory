@@ -10,6 +10,7 @@ db.users.insert(u1);
 let q1 = {
     _uid: 1,
     name: 'quizz1',
+    description:"Un jolie quizz",
     icon: 'quizz1/quizz1.jpg',
     keywords: ['kitchen', 'english'],
     questions: [{
@@ -42,6 +43,7 @@ let q1 = {
 let q2 = {
     _uid: 2,
     name: 'quizz2',
+    description:"Un jolie quizz",
     icon: 'quizz2/aix.jpg',
     keywords: ['Aix', 'Tourisme'],
     questions: [{

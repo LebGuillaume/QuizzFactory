@@ -18,6 +18,7 @@ const usersSchema = mongoose.Schema({
 
 const quizzesSchema = mongoose.Schema({
   name: String,
+  description: String,
   icon: String,
   keywords: [],
   questions: [],

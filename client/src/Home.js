@@ -18,9 +18,7 @@ class Thumbnail extends Component {
                         <h4 className="card-title">
                             <a href="#">{this.props.quizz.name}</a>
                         </h4>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                            dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                        <p className="card-text">{this.props.quizz.description}</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +40,7 @@ class Home extends Component {
     async loadData() {
         console.log(1);
 
-            const quizzes = (await axios.get(HTTP_SERVER_PORT + 'quizz')).data;  // We need to wait for the response.
+        const quizzes = (await axios.get(HTTP_SERVER_PORT + 'quizz')).data;  // We need to wait for the response.
         console.log(2);
         console.log(quizzes);
         this.setState({quizzes: quizzes});
@@ -51,6 +49,7 @@ class Home extends Component {
 
 
     render() {
+
         return (
             <div  className="row">
                 {this.state.quizzes.map(q=> <Thumbnail quizz={q}/>)}
