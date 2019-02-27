@@ -19,8 +19,9 @@ class App extends Component {
             <div className="container">
 				<nav>
 					<ul className="menu_deco">
-					<li><Link  to={'/'}>Home page</Link>  </li>
+					    <li><Link  to={'/'}>Home page</Link>  </li>
                         <li><Link  to={'/about'}>About page</Link>  </li>
+                        <li><Link  to={'/AddQuiz'}>Add a quizz</Link>  </li>
 
 					</ul>
 				</nav>

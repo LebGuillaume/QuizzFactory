@@ -60,6 +60,7 @@ class Quizz extends Component{
                 quizz :quizz
             });
         console.log(3);
+        console.log(this.state.quizz);
 
     }
 
@@ -120,8 +121,11 @@ class Quizz extends Component{
     }
 
     render(){
-        if(this.state.quizz == null)
-            return null;
+        if(this.state.quizz == null) {
+
+            console.log(this.state.quizz);
+            return <p>Loading ...</p>;
+        }
 
 
         if(this.state.current == this.state.quizz.questions.length){

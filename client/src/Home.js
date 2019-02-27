@@ -12,7 +12,7 @@ class Thumbnail extends Component {
             <div className="col-lg-4 col-sm-6 mb-4">
 
                 <div className="box-shadow card h-100">
-                    <Link to={'./quizz/'+this.props.quizz._uid}><img className="card-img-top" src={HTTP_SERVER_PORT_PICTURES + this.props.quizz.icon} /></Link>
+                    <Link to={'./quizz/'+this.props.quizz._id}><img className="card-img-top" src={HTTP_SERVER_PORT_PICTURES + this.props.quizz.icon} /></Link>
 
                     <div className="card-body">
                         <h4 className="card-title">

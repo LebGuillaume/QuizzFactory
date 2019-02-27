@@ -25,9 +25,10 @@ router
         Quizz.findOne({
         _id: req.params.id
         }).exec((err, data) => {
-        console.log(data);
+        console.log(1);
         if (err) return res.status(500).send(err);
         else res.json(data);
+            console.log(data);
     });
 })
     .use((req, res) => {
