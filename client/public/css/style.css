@@ -9,7 +9,10 @@ img{
 }
 .box-shadow{
     box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, .2);
+    overflow: hidden;
+
 }
+
 
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
 
@@ -39,7 +42,7 @@ body {
     left: -9999px;
 }
 
-label {
+.realLabel {
     display: block;
     position: relative;
     margin: 20px;
@@ -55,7 +58,7 @@ label {
     transition: background-color .2s, box-shadow .2s;
 }
 
-label::before {
+.realLabel::before {
     content: '';
     display: block;
     position: absolute;
@@ -68,26 +71,29 @@ label::before {
     transition: background-color .2s;
 }
 
-label:first-of-type {
-    transform: translateX(-40px);
+.realLabel:first-of-type {
+    transform: translateX(-10px);
 }
 
-label:last-of-type {
-    transform: translateX(40px);
+.realLabel:last-of-type {
+    transform: translateX(10px);
 }
 
-label:hover, input:focus + label {
+.realLabel:hover, .realInput:focus + .realLabel {
     box-shadow: 0 0 20px rgba(0, 0, 0, .6);
 }
 
-input:checked + label {
+.realInput:checked + .realLabel {
+
     background-color: #194359;
 }
 
-input:checked + label::before {
+.realInput:checked + .reaLabel::before {
     background-color: #fff;
 }
-
+.realInput{
+    visibility:hidden;
+}
 
 .question_list {
  list-style: none;
@@ -95,7 +101,8 @@ input:checked + label::before {
 .menu_deco {
     display: flex;
     justify-content: center !important;
-
+    background-color: #2f779d;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
 }
 
 .menu_deco li {
@@ -105,6 +112,50 @@ input:checked + label::before {
 
 .menu_deco li a{
     text-decoration: none;
-    color:#2f779d
+    color:white;
+    transition:ease 0.3s;
+
 }
+.menu_deco li a:hover{
+    text-decoration: none;
+    color:darkred;
+}
+
+.menu_deco {
+    padding:0;
+    text-align: center;
+}
+.question_list{
+    margin:0;
+    padding:0;
+}
+.QuizzName{
+    text-align: center;
+}
+
+
+.question_list label img{
+    max-width: 200px;
+    max-height: 200px;
+}
+.header-toogle {
+
+
+    display: block;
+
+}
+.header-toogle img{
+    max-height:30px;
+    max-width:30px;
+}
+.header-toogle-close {
+    display: none
+}
+
+
+/*animation*/
+
+
+
+
 

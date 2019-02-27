@@ -2,47 +2,55 @@ import React, {Component} from 'react';
 import Home from "./Home.js";
 import {quizzes} from "./examples";
 import {HTTP_SERVER_PORT_PICTURES} from "./constants";
+import $ from 'jquery';
+
+class Question extends Component {
 
 
 
 
 
-
-
-class Question extends Component{
-    render(){
+    render() {
 
 
         return (
-            <div>
-                <form onSubmit={e => this.props.nextQuestion(e)}>
+            <div className="container">
+                <div>
+                    <form onSubmit={e => this.props.nextQuestion(e)}>
 
-                <h3>{this.props.q.question}</h3>
-                <ul className="question_list">
-                {this.props.q.txtAnswers.map( x =>{
-                   return <li> <input  type='checkbox' id={x} name={x}/>  <label for={x}>{x}</label></li>
+                        <h3>{this.props.q.question}</h3>
+                        <ul className="question_list">
+                            {this.props.q.txtAnswers.map(x => {
+                                return <li><input className='realInput' type='checkbox' id={x} name={x}/> <label
+                                    className='realLabel' for={x}>{x}</label></li>
 
-                })}
-                {this.props.q.imgAnswers.map( x =>{
-                        return <li> <input  type='checkbox' id={x} name={x}/>  <label for={x}>question</label><img src={HTTP_SERVER_PORT_PICTURES + x} /></li>
+                            })}
+                            {this.props.q.imgAnswers.map(x => {
+                                return <li><input type='checkbox' id={x} name={x}/>  <label label for={x}>
 
-                })}
-                </ul>
-                    <input id="button" type="submit"  value="Next question"/>
-                </form>
+
+
+                                    <img
+                                        src={HTTP_SERVER_PORT_PICTURES + x}/></label></li>
+
+                            })}
+                        </ul>
+                        <input id="button" type="submit" value="Next question"/>
+                    </form>
+                </div>
             </div>
         );
     }
 
 }
 
-class Quizz extends Component{
+class Quizz extends Component {
     constructor(props) {
         super(props);
-        this.quizz = quizzes.filter(q=> q._uid == this.props.match.params.id)[0];
+        this.quizz = quizzes.filter(q => q._uid == this.props.match.params.id)[0];
         this.state = {
-            current : 0,
-            score : 0
+            current: 0,
+            score: 0
 
         };
         this.NextQuestion = this.NextQuestion.bind(this);
@@ -67,41 +75,41 @@ class Quizz extends Component{
     }
 
 
-
     NextQuestion(e) {
         e.preventDefault();
         let choices = [];
 
 
-        for(let i=0;i<e.target.elements.length;i++){
-                if(e.target.elements[i].checked){
-                    choices.push(i);
-                }
-
-
+        for (let i = 0; i < e.target.elements.length; i++) {
+            if (e.target.elements[i].checked) {
+                choices.push(i);
             }
-        if(choices.length==0){
+
+
+        }
+        if (choices.length == 0) {
             alert("You must check at least one checkbox.");
             return false;
         }
-        if(this.isEquivalent(choices,this.quizz.questions[this.state.current].solutions)){
-                let newScore = this.state.score + this.quizz.questions[this.state.current].points;
-                console.log(newScore);
-                this.setState({score : newScore});
+        if (this.isEquivalent(choices, this.quizz.questions[this.state.current].solutions)) {
+            let newScore = this.state.score + this.quizz.questions[this.state.current].points;
+            console.log(newScore);
+            this.setState({score: newScore});
 
-                console.log(newScore);
+            console.log(newScore);
 
-            }
-            let Newcurr = this.state.current + 1;
+        }
+        let Newcurr = this.state.current + 1;
 
-            this.setState({current : Newcurr});
-            console.log(choices);
+        this.setState({current: Newcurr});
+        console.log(choices);
 
 
     }
 
-    render(){
-        if(this.state.current == this.quizz.questions.length){
+    render() {
+
+        if (this.state.current == this.quizz.questions.length) {
 
             return (
                 <div>
@@ -110,10 +118,12 @@ class Quizz extends Component{
             )
         }
         return (
-        <div>
-            {this.quizz.name}
-            <Question q={this.quizz.questions[this.state.current]} nextQuestion={this.NextQuestion}/>
-        </div>
+            <div className="container">
+                <div className="QuizzName">
+                    {this.quizz.name}
+                    <Question q={this.quizz.questions[this.state.current]} nextQuestion={this.NextQuestion}/>
+                </div>
+            </div>
         )
     }
 
