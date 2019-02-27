@@ -80,23 +80,23 @@ class AddQuiz extends React.Component
     }
     setq1Correction(e)
     {
-        console.log(e.targete.target.value);
-        this.state.question.answer1.correct=e.targete.target.value;
+        console.log(e.target.checked);
+        this.state.question.answer1.correct=e.target.checked;
     }
     setq2Correction(e)
     {
-        console.log(e.targete.target.value);
-        this.state.question.answer2.correct=e.targete.target.value;
+        console.log(e.target.checked);
+        this.state.question.answer2.correct=e.target.checked;
     }
     setq3Correction(e)
     {
-        console.log(e.targete.target.value);
-        this.state.question.answer3.correct=e.targete.target.value;
+        console.log(e.target.checked);
+        this.state.question.answer3.correct=e.target.checked;
     }
     setq4Correction(e)
     {
-        console.log(e.targete.target.value);
-        this.state.question.answer4.correct=e.targete.target.value;
+        console.log(e.target.checked);
+        this.state.question.answer4.correct=e.target.checked;
     }
 
 
@@ -104,7 +104,7 @@ class AddQuiz extends React.Component
     addQuestion(e)
     {
         e.preventDefault();
-        console.log(this.state.question.answer2.text);
+        console.log(this.state.question.answer1.correct);
         this.state.questions.push(this.state.question);
     }
 
