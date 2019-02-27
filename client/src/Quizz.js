@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import Home from "./Home.js";
 import {quizzes} from "./examples";
 import {HTTP_SERVER_PORT_PICTURES} from "./constants";
-import $ from 'jquery';
+
+import axios from 'axios';
+
 
 class Question extends Component {
 
@@ -47,14 +49,35 @@ class Question extends Component {
 class Quizz extends Component {
     constructor(props) {
         super(props);
-        this.quizz = quizzes.filter(q => q._uid == this.props.match.params.id)[0];
+
+
         this.state = {
-            current: 0,
-            score: 0
+            current : 0,
+            score : 0,
+            quizz : null,
 
         };
         this.NextQuestion = this.NextQuestion.bind(this);
+        this.loadData();
     }
+
+    async loadData() {
+        console.log(1);
+        const  quizz = (await axios.get('http://localhost:8081/getquizz/'+this.props.match.params.id)).data;
+        console.log(2);
+
+        console.log(quizz);
+        this.setState({
+                quizz :quizz
+            });
+        console.log(3);
+        console.log(this.state.quizz);
+
+    }
+
+
+
+
 
     isEquivalent(a, b) {
         // Create arrays of property names
@@ -91,10 +114,12 @@ class Quizz extends Component {
             alert("You must check at least one checkbox.");
             return false;
         }
-        if (this.isEquivalent(choices, this.quizz.questions[this.state.current].solutions)) {
-            let newScore = this.state.score + this.quizz.questions[this.state.current].points;
-            console.log(newScore);
-            this.setState({score: newScore});
+
+        if(this.isEquivalent(choices,this.state.quizz.questions[this.state.current].solutions)){
+                let newScore = this.state.score + this.state.quizz.questions[this.state.current].points;
+                console.log(newScore);
+                this.setState({score : newScore});
+
 
             console.log(newScore);
 
@@ -107,9 +132,17 @@ class Quizz extends Component {
 
     }
 
-    render() {
 
-        if (this.state.current == this.quizz.questions.length) {
+    render(){
+        if(this.state.quizz == null) {
+
+            console.log(this.state.quizz);
+            return <p>Loading ...</p>;
+        }
+
+
+        if(this.state.current == this.state.quizz.questions.length){
+
 
             return (
                 <div>
@@ -118,12 +151,19 @@ class Quizz extends Component {
             )
         }
         return (
+
             <div className="container">
                 <div className="QuizzName">
-                    {this.quizz.name}
-                    <Question q={this.quizz.questions[this.state.current]} nextQuestion={this.NextQuestion}/>
+                    {this.state.quizz.name}
+                    <Question q={this.state.quizz.questions[this.state.current]} nextQuestion={this.NextQuestion}/>
                 </div>
-            </div>
+
+                </div>
+
+
+
+
+
         )
     }
 

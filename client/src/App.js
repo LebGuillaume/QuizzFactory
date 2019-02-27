@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
+import AddQuiz from"./AddQuiz.js"
 
 import {quizzes, users} from './examples';
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
@@ -13,6 +14,7 @@ import {HTTP_SERVER_PORT_PICTURES_PUBLIC} from "./constants";
 class App extends Component {
 
     render() {
+
         return (
             <BrowserRouter>
 
@@ -34,6 +36,7 @@ class App extends Component {
                                         alt="Fermer Menu"/></Link>
                                 </div>
                             </li>
+                            <li><Link  to={'/AddQuiz'}>Add a quizz</Link>  </li>
 
                         </ul>
                     </nav>
@@ -42,10 +45,12 @@ class App extends Component {
                         <Route exact={true} path="/about" component={About}/>
                         <Route exact={true} path="/quizz/:id" component={Quizz}/>
                         <Route path="*" component={() => <p>Page Not Found</p>}/>
+                        <Route exact={true} path="/AddQuiz" component={AddQuiz}/>
                     </Switch>
                 </div>
             </BrowserRouter>
         );
+
     }
 }
 
