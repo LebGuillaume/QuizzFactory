@@ -9,7 +9,7 @@ class TxtAnswer extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-md-6">
-                        <div className="FormAddQuizz form-group">
+                        <div className=" form-group">
                             <label htmlFor="quizTextAnswer1">Text answer 1</label>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
@@ -25,7 +25,7 @@ class TxtAnswer extends React.Component {
                     </div>
 
                     <div className="col-md-6">
-                        <div className="FormAddQuizz form-group">
+                        <div className=" form-group">
                             <label htmlFor="quizTextAnswer2">Text answer 2</label>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
@@ -74,7 +74,7 @@ class TxtAnswer extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="FormAddQuizz form-group">
+                        <div className=" form-group">
                             <input type="button" onClick={e => this.addquestion(e)} className="btn btn-primary"
                                    value="Next question"/>
                             <input type="submit" className="btn btn-primary " value="Finalize the quiz"/>
@@ -382,7 +382,7 @@ class AddQuestion extends React.Component {
         return (
             <div className="container">
 
-                <form onSubmit={e => this.addquestion(e)}>
+                <form onSubmit={e => this.addquestion(e)} className="FormAddQuizz">
                     <h4>Quiz name:{this.state.lastquizz.name}</h4>
                     <h2> ADD A QUESTION</h2>
                     <div className="row">
