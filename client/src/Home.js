@@ -19,7 +19,7 @@ class Thumbnail extends Component {
 
                     <div className="card-body">
                         <h4 className="card-title">
-                            <a href="#">{this.props.quizz.name}</a>
+                            <p>{this.props.quizz.name}</p>
                         </h4>
                         <p className="card-text">{this.props.quizz.description}</p>
 
