@@ -14,7 +14,7 @@ class TxtAnswer extends React.Component {
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <input type="checkbox" id="checkbo1" className="checkboxes" aria-label="Checkbox for following text input"/>
+                                        <input type="checkbox" id="checkbox1" className="checkboxes" aria-label="Checkbox for following text input"/>
                                     </div>
                                 </div>
                                 <input name="quizTextAnswer1" id="quizTextAnswer1"
@@ -47,7 +47,7 @@ class TxtAnswer extends React.Component {
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <input type="checkbox" id="checkbo3" className="checkboxes" aria-label="Checkbox for following text input"/>
+                                        <input type="checkbox" id="checkbox3" className="checkboxes" aria-label="Checkbox for following text input"/>
                                     </div>
                                 </div>
                                 <input  name="quizTextAnswer3" id="quizTextAnswer3"
@@ -62,7 +62,7 @@ class TxtAnswer extends React.Component {
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <input type="checkbox" id="checkbo4" className="checkboxes" aria-label="Checkbox for following text input"/>
+                                        <input type="checkbox" id="checkbox4" className="checkboxes" aria-label="Checkbox for following text input"/>
                                     </div>
                                 </div>
                                 <input  name="quizTextAnswer4" id="quizTextAnswer4"
@@ -94,9 +94,9 @@ class InputVideo extends React.Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label htmlFor="question">Upload a video/photo question</label>
+                                            <label htmlFor="question">Upload a video question</label>
                                             <input  name="quizQuestion" id="question_File_Input"
-                                                    className="form-control input_txt"
+                                                    className="form-control "
                                                     placeholder="" type="file" />
                                         </div>
                                     </div>
@@ -228,13 +228,15 @@ class AddQuestion extends React.Component {
             let y = document.getElementsByClassName("input_txt");
             let yz = document.getElementsByClassName("checkboxes");
             console.log(y);
-            for (let i = 0; i < y.length; i++) {
+            for (let i = 0; i < yz.length; i++) {
 
                 txtAnswers.push(y[i].value);
 
-                if(yz[i].checked){
-                    solutions.push(i);
-                }
+
+                    if (yz[i].checked) {
+                        solutions.push(i);
+                    }
+
             }
             console.log(txtAnswers,imgAnswers,solutions);
             console.log(e.target.className);
@@ -251,6 +253,7 @@ class AddQuestion extends React.Component {
             };
             if(!this.state.quizQuestionType){
                 let imageQuestion= document.getElementById('question_File_Input');
+                console.log(imageQuestion);
                 const selectedFile = imageQuestion.files[0];
                 const data = new FormData();
                 data.append('file', selectedFile, selectedFile.name);
@@ -392,7 +395,7 @@ class AddQuestion extends React.Component {
                                 <div className="radio">
                                     <label>
                                         <input type="checkbox" onChange={e => this.setQuestionType(e)} name="quizQuestionType"
-                                               id="quizQuestionType" value="video" />Add a Video or Image
+                                               id="quizQuestionType" value="video" />Add a Video
                                     </label>
                                 </div>
 
@@ -405,7 +408,7 @@ class AddQuestion extends React.Component {
                             <div className="form-group">
                                 <label htmlFor="quizscoring">Score for this question :</label>
                                 <label>
-                                    <input type="number" max="10" min="1" value="1"name="scoring"
+                                    <input type="number" max="10" min="1" defaultValue="1"name="scoring"
                                            id="scoring"  />Images
                                 </label>
                             </div>

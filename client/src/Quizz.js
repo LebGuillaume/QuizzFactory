@@ -14,7 +14,7 @@ class Question extends Component {
 
     render() {
     console.log(this.props.q.txtAnswers);
-    if(this.props.q.txtAnswers!==null){
+    if(this.props.q.video == null){
         return(
             <div>
             <form onSubmit={e => this.props.nextQuestion(e)}>
@@ -41,14 +41,19 @@ class Question extends Component {
         )
 
 
-    }else if(this.props.q.imgAnswers.length > 0){
+    }else if(this.props.q.video !== null){
         return(
             <div>
             <form onSubmit={e => this.props.nextQuestion(e)}>
 
                 <h3>{this.props.q.question}</h3>
+                <video width="1040" height="680" controls={false} autoPlay muted>
+                    <source src={HTTP_SERVER_PORT_PICTURES+this.props.q.video} type="video/mp4"/>
+
+                </video>
+
                 <ul className="question_list">
-                    {this.props.q.imgAnswers.map(x => {
+                    {this.props.q.txtAnswers.map(x => {
                         return <li><input className='realInput' type='checkbox' id={x} name={x}/> <label
                             className='realLabel' htmlFor={x}>{x}</label></li>
 
@@ -204,12 +209,12 @@ class Quizz extends Component {
         }
         return (
 
-
+            <div className="container">
                 <div className="QuizzName">
                     {this.state.quizz.name}
                     <Question q={this.state.quizz.questions[this.state.current]} nextQuestion={this.NextQuestion}/>
                 </div>
-
+            </div>
 
 
 

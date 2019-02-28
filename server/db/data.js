@@ -6,7 +6,7 @@ let u1 = {
 }
 db.users.drop();
 db.users.insert(u1);
-
+/*
 let q1 = {
     _uid: 1,
     name: 'quizz1',
@@ -65,7 +65,7 @@ let q2 = {
     ownerId: db.users.findOne({name:'toto'}),
     scores: []
 };
-
+*/
 db.quizzes.drop();
-db.quizzes.insert(q1);
-db.quizzes.insert(q2);
+//db.quizzes.insert(q1);
+//db.quizzes.insert(q2);
