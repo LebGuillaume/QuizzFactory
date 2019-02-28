@@ -60,7 +60,7 @@ class AddQuiz extends React.Component {
         return (
             <div className="container">
 
-                <form onSubmit={e => this.addquiz(e)}>
+                <form className="FormAddQuizz" onSubmit={e => this.addquiz(e)}>
                     <h2>ADD A QUIZ</h2>
                     <div className="row">
                         <div className="col-md-12">

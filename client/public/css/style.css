@@ -27,7 +27,7 @@ html {
 body {
     color: #435757;
     background: url('../img/factory.png'),  center ;
-    background-size:cover;
+    background-size:contain;
     background-repeat: no-repeat no-repeat;
     background-color: navajowhite;
     background-position: bottom;
@@ -181,4 +181,10 @@ body {
 
 .card img{
     max-height: 180px;
+}
+.FormAddQuizz{
+    background-color: rgba(255, 255, 255, 1);
+    padding:10px;
+    border-radius:10px;
+    box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, .2);
 }
