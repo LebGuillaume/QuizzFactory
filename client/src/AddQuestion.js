@@ -75,7 +75,7 @@ class TxtAnswer extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <input type="button" onClick={e => this.addquestionTxt(e)} className="btn btn-primary"
+                            <input type="button" onClick={e => this.addquestion(e)} className="btn btn-primary"
                                    value="Next question"/>
                             <input type="submit" className="btn btn-primary " value="Finalize the quiz"/>
                         </div>
@@ -96,55 +96,73 @@ class ImgAnswer extends React.Component {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="quizpicture1">Answer picture 1:</label>
-
-                            <input type="file"
-                                   id="quizpicture1" name="quizpicture1"
-                                   accept="image/png, image/jpeg" required/>
-
+                            <label htmlFor="quizpicture1">Answer picture 1</label>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text">
+                                        <input type="checkbox"  className="checkboxes_File_Input" aria-label="Checkbox for following text input"/>
+                                    </div>
+                                </div>
+                                <input type="file"
+                                       id="quizpicture1" name="quizpicture1"
+                                       accept="image/png, image/jpeg" className="File_Inupt" />
+                            </div>
                         </div>
-
                     </div>
+
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="quizpicture2">Answer picture 2:</label>
-
-                            <input type="file"
-                                   id="quizpicture2" name="quizpicture2"
-                                   accept="image/png, image/jpeg" required/>
-
+                            <label htmlFor="quizpicture2">Answer picture 2</label>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text">
+                                        <input type="checkbox"  className="checkboxes_File_Input" aria-label="Checkbox for following text input"/>
+                                    </div>
+                                </div>
+                                <input type="file"
+                                       id="quizpicture1" name="quizpicture2"
+                                       accept="image/png, image/jpeg" className="File_Inupt" />
+                            </div>
                         </div>
-
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="quizpicture3">Answer picture 3:</label>
-
-                            <input type="file"
-                                   id="quizpicture3" name="quizpicture3"
-                                   accept="image/png, image/jpeg" required/>
-
+                            <label htmlFor="quizpicture3">Answer picture 3</label>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text">
+                                        <input type="checkbox"  className="checkboxes_File_Input" aria-label="Checkbox for following text input"/>
+                                    </div>
+                                </div>
+                                <input type="file"
+                                       id="quizpicture3" name="quizpicture3"
+                                       accept="image/png, image/jpeg" className="File_Inupt" />
+                            </div>
                         </div>
-
                     </div>
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="quizpicture4">Answer picture 4:</label>
-
-                            <input type="file"
-                                   id="quizpicture4" name="quizpicture4"
-                                   accept="image/png, image/jpeg" required/>
-
+                            <label htmlFor="quizpicture4">Answer picture 4</label>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text">
+                                        <input type="checkbox"  className="checkboxes_File_Input" aria-label="Checkbox for following text input"/>
+                                    </div>
+                                </div>
+                                <input type="file"
+                                       id="quizpicture4" name="quizpicture4"
+                                       accept="image/png, image/jpeg" className="File_Inupt" />
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <input type="button" onClick={e => this.addquestionImg(e)} className="btn btn-primary"
+                            <input type="button" onClick={e => this.addquestion(e)} className="btn btn-primary"
                                    value="Next question"/>
                             <input type="submit" className="btn btn-primary " value="Finalize the quiz"/>
                         </div>
@@ -181,75 +199,100 @@ class AddQuestion extends React.Component {
 
     }
 
-    addquestionTxt(e) {
+    addquestion(e) {
         e.preventDefault();
-        let txtAnswers = [];
-        let imgAnswers = [];
-        let solutions = [];
-        let y = document.getElementsByClassName("input_txt");
-        let yz = document.getElementsByClassName("checkboxes");
-        console.log(y);
-        for (let i = 0; i < y.length; i++) {
+        if(this.state.QuestionType==="txt"){
+            let txtAnswers = [];
+            let imgAnswers = [];
+            let solutions = [];
+            let y = document.getElementsByClassName("input_txt");
+            let yz = document.getElementsByClassName("checkboxes");
+            console.log(y);
+            for (let i = 0; i < y.length; i++) {
 
-            txtAnswers.push(y[i].value);
+                txtAnswers.push(y[i].value);
 
-            if(yz[i].checked){
-                solutions.push(i);
+                if(yz[i].checked){
+                    solutions.push(i);
+                }
             }
-        }
-        console.log(txtAnswers,imgAnswers,solutions);
-        console.log(e.target.className);
+            console.log(txtAnswers,imgAnswers,solutions);
+            console.log(e.target.className);
 
 
 
-        let question = {
-            question:document.getElementById('question').value,
-            video: null,
-            txtAnswers: txtAnswers,
-            imgAnswers: imgAnswers,
-            solutions: solutions,
-            points: 3
-        };
+            let question = {
+                question:document.getElementById('question').value,
+                video: null,
+                txtAnswers: txtAnswers,
+                imgAnswers: imgAnswers,
+                solutions: solutions,
+                points: 3
+            };
 
-        console.log(this.props.match.params.id);
-        axios.patch(HTTP_SERVER_PORT + 'addquestion', {  // The json object to add in the collection
-            quizId:this.props.match.params.id,
-            question: question,
-        }).then(res => {
-            if (res.status === 200) {
-                this.setState({current: 1});
-                this.loadData();
-            } else
-                console.log("Failed to add questionTXT");
-        }).catch(err => console.log("Error =>", err));
+            console.log(this.props.match.params.id);
+            axios.patch(HTTP_SERVER_PORT + 'addquestion', {  // The json object to add in the collection
+                quizId:this.props.match.params.id,
+                question: question,
+            }).then(res => {
+                if (res.status === 200) {
+                    this.setState({current: 1});
+                    this.loadData();
+                } else
+                    console.log("Failed to add questionTXT");
+            }).catch(err => console.log("Error =>", err));
+        }else {
+
+                let txtAnswers = [];
+                let imgAnswers = [];
+                let solutions = [];
+                let y = document.getElementsByClassName("File_Inupt");
+                let yz = document.getElementsByClassName("checkboxes_File_Input");
+                let question = document.getElementById('question').value;
+                let NewImgAnswer = [];
+                console.log(y);
+
+                for (let i = 0; i < y.length; i++) {
+                    if( y[i].files.length !== 0 ){
+                        imgAnswers.push(y[i].getAttribute('name'));
+                    }
+
+                    if (yz[i].checked) {
+                        solutions.push(i);
+                    }
+                }
+                console.log(txtAnswers, imgAnswers, solutions);
+                console.log(imgAnswers);
+
+                for (let i = 0; i < imgAnswers.length; i++) {
+                    let x = y[i];
+                    console.log("x ="+ x);
+                    const selectedFile = x.files[0];
+                    const data = new FormData();
+                    data.append('file', selectedFile, selectedFile.name);
+                    console.log(selectedFile.name);
+                    NewImgAnswer.push(selectedFile.name);
+                    console.log(data);
+                    axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
+                    console.log('Fin dupload');
+                };
+
+
+            axios.patch(HTTP_SERVER_PORT + 'addquestion', {  // The json object to add in the collection
+                quizId:this.props.match.params.id,
+                question: question,
+            }).then(res => {
+                if (res.status === 200) {
+                    this.setState({current: 1});
+                    this.loadData();
+                } else
+                    console.log("Failed to add questionTXT");
+            }).catch(err => console.log("Error =>", err));
+            }
+
     }
 
-    addquestionImg(e) {
-        e.preventDefault();
-        let question = document.getElementById('question').value;
-        const selectedFile = e.target.quizpicture.files[0];
-        const data = new FormData();
-        data.append('file', selectedFile, selectedFile.name);
 
-        console.log(selectedFile.name);
-        console.log(data);
-
-        axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
-        axios.post(HTTP_SERVER_PORT + 'addquiz', {  // The json object to add in the collection
-            question: question,
-            video: null,
-            txtAnswers: ["in the living room", "in the kitchen", "in the garden", "in the bathroom"],
-            imgAnswers: [],
-            solutions: [1, 2],
-            points: 3
-        }).then(res => {
-            if (res.status === 200) {
-                this.setState({current: 1});
-                this.loadData();
-            } else
-                console.log("Failed to add quiz");
-        }).catch(err => console.log("Error =>", err));
-    }
 
     setType(e) {
         let newType = e.target.value;
@@ -270,7 +313,7 @@ class AddQuestion extends React.Component {
         return (
             <div className="container">
 
-                <form onSubmit={e => this.addquestionTxt(e)}>
+                <form onSubmit={e => this.addquestion(e)}>
                     <h4>Quiz name:{this.state.lastquizz.name}</h4>
                     <h2> ADD A QUESTION</h2>
                     <div className="row">

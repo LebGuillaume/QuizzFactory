@@ -110,52 +110,6 @@ class AddQuiz extends React.Component {
             </div>
 
 
-        /*
-                        <form className="form-horizontal" onSubmit={e => this.addquiz(e)}>
-                            <fieldset>
-
-                                <legend>Add a quiz form</legend>
-
-                                <div className="form-group">
-
-                                    <div className="col-md-5">
-                                        <div className="input-group">
-                                            <span className="input-group-addon">Quiz title</span>
-                                            <input id="prependedtext" name="prependedtext" id="quizname"
-                                                   className="form-control"
-                                                   placeholder="placeholder" type="text" required/>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-
-                                    <div className="col-md-4">
-                                            <textarea className="form-control" id="textarea"
-                                                      name="textarea"/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="avatar">Choose a profile picture:</label>
-
-                                    <input type="file"
-                                           id="quizpicture" name="quizpicture"
-                                           accept="image/png, image/jpeg"/>
-
-
-                                        <input id="keywords" name="keywords" id="quizkey" className="form-control"
-                                               placeholder="placeholder" type="text" required/>
-
-
-                                </div>
-                                <input type="submit"/>
-
-                            </fieldset>
-                        </form>
-                    </div>
-                    */
     )
     }
     }

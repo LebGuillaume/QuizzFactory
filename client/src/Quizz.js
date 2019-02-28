@@ -14,7 +14,59 @@ class Question extends Component {
 
     render() {
     console.log(this.props.q.txtAnswers);
+    if(this.props.q.txtAnswers.length==0){
+        return(
+            <div>
+            <form onSubmit={e => this.props.nextQuestion(e)}>
 
+                <h3>{this.props.q.question}</h3>
+                <ul className="question_list">
+                    {this.props.q.txtAnswers.map(x => {
+                        return <li><input className='realInput' type='checkbox' id={x} name={x}/> <label
+                            className='realLabel' htmlFor={x}>{x}</label></li>
+
+                    })}
+                    {this.props.q.imgAnswers.map(x => {
+                        return <li><input type='checkbox' id={x} name={x}/> <label label htmlFor={x}>
+
+
+                            <img
+                                src={HTTP_SERVER_PORT_PICTURES + x}/></label></li>
+
+                    })}
+                </ul>
+                <input id="button" type="submit" value="Next question"/>
+            </form>
+        </div>
+        )
+
+
+    }else if(this.props.q.imgAnswers.length > 0){
+        return(
+            <div>
+            <form onSubmit={e => this.props.nextQuestion(e)}>
+
+                <h3>{this.props.q.question}</h3>
+                <ul className="question_list">
+                    {this.props.q.imgAnswers.map(x => {
+                        return <li><input className='realInput' type='checkbox' id={x} name={x}/> <label
+                            className='realLabel' htmlFor={x}>{x}</label></li>
+
+                    })}
+                    {this.props.q.imgAnswers.map(x => {
+                        return <li><input type='checkbox' id={x} name={x}/> <label label htmlFor={x}>
+
+
+                            <img
+                                src={HTTP_SERVER_PORT_PICTURES + x}/></label></li>
+
+                    })}
+                </ul>
+                <input id="button" type="submit" value="Next question"/>
+            </form>
+        </div>
+        )
+    }
         return (
 
                 <div>
