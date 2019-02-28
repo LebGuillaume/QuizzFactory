@@ -29,10 +29,10 @@ class App extends Component {
                             <li><Link to={'/about'}>About page</Link></li>
                             <li>
                                 <div className="header-toogle">
-                                    <Link to={'/'} class="header-toogle-open"><img
+                                    <Link to={'/'} className="header-toogle-open"><img
                                         src={HTTP_SERVER_PORT_PICTURES_PUBLIC + "menu.png"} width="30"
                                         alt="Ouvrir Menu"/></Link>
-                                    <Link to={'/'} class="header-toogle-close"><img
+                                    <Link to={'/'} className="header-toogle-close"><img
                                         src={HTTP_SERVER_PORT_PICTURES_PUBLIC + "menu-close.png"} width="30"
                                         alt="Fermer Menu"/></Link>
                                 </div>
@@ -46,7 +46,7 @@ class App extends Component {
                         <Route exact={true} path="/about" component={About}/>
                         <Route exact={true} path="/quizz/:id" component={Quizz}/>
                         <Route exact={true} path="/AddQuiz" component={AddQuiz}/>
-                        <Route exact={true} path="/AddQuestion" component={AddQuestion}/>
+                        <Route exact={true} path="/AddQuestion/:id" component={AddQuestion}/>
                         <Route path="*" component={() => <p>Page Not Found</p>}/>
                     </Switch>
                 </div>

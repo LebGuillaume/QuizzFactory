@@ -13,7 +13,7 @@ class Question extends Component {
 
 
     render() {
-
+    console.log(this.props.q.txtAnswers);
 
         return (
 

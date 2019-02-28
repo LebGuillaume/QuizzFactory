@@ -7,21 +7,21 @@ class AddQuiz extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: null
+            current: null,
+            lastquizz: null
         }
     }
 
     addquiz(e) {
         e.preventDefault();
         let qname = document.getElementById('quizname').value;
-        let qkey = document.getElementById('quizkey').value.split(";");
-        let Qdesc = document.getElementById('textarea');
+        let qkey = document.getElementById('quizcategorie').value.split(";");
+        let Qdesc = document.getElementById('quizdescription');
         const selectedFile = e.target.quizpicture.files[0];
         const data = new FormData();
         data.append('file', selectedFile, selectedFile.name);
         console.log(selectedFile.name);
-        console.log(data);
-        axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
+        axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res ligne 24", res));
         axios.post(HTTP_SERVER_PORT + 'addquiz', {  // The json object to add in the collection
             name: qname,
             description: Qdesc.value,
@@ -30,72 +30,134 @@ class AddQuiz extends React.Component {
             icon: selectedFile.name
 
         }).then(res => {
-            if (res.status === 200)
-                this.setState({current: 1});
+            if (res.status === 200) {
 
-            else
+                this.setState({current: 1});
+                this.loadData();
+            } else
                 console.log("Failed to add quiz");
         }).catch(err => console.log("Error =>", err));
     }
 
+    async loadData() {
+        console.log(1);
+        const lastquizz = (await axios.get('http://localhost:8081/getlast/')).data[0];
+        console.log(2);
+
+        this.setState({
+            lastquizz: lastquizz
+        });
+        console.log(3);
+        console.log("Ligne 50 retour de l'id du dernier quizz en BD" + this.state.lastquizz._id);
+
+    }
+
 
     render() {
-        if (this.state.current == 1) {
-            return <Redirect to="/AddQuestion"/>
+        if (this.state.lastquizz != null) {
+            return <Redirect to={"/AddQuestion/" + this.state.lastquizz._id}/>
         }
         return (
             <div className="container">
-                <form className="form-horizontal" onSubmit={e => this.addquiz(e)}>
-                    <fieldset>
 
-                        <legend>Add a quiz form</legend>
+                <form onSubmit={e => this.addquiz(e)}>
+                    <h2>ADD A QUIZ</h2>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <label htmlFor="quizname">Quiz title</label>
+                                <input type="text" className="form-control" placeholder="My super quiz !" id="quizname" required/>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div className="form-group">
-
-                            <div className="col-md-5">
-                                <div className="input-group">
-                                    <span className="input-group-addon">Quiz title</span>
-                                    <input id="prependedtext" name="prependedtext" id="quizname"
-                                           className="form-control"
-                                           placeholder="placeholder" type="text" required/>
-                                </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <label htmlFor="quizdescription">Quiz description</label>
+                                <textarea className="form-control" id="textarea" name="textarea" id="quizdescription" placeholder="Type a short description of the quiz"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <label htmlFor="quizcategorie">Categories</label>
+                                <input id="keywords" name="keywords" id="quizcategorie" className="form-control"
+                                       placeholder="Example: Sport:Cinema:History" type="text" required/>
 
                             </div>
                         </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <label htmlFor="quizpicture">Choose a quiz picture:</label>
 
-                        <div className="form-group">
-
-                            <div className="col-md-4">
-                                    <textarea className="form-control" id="textarea"
-                                              name="textarea"/>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="avatar">Choose a profile picture:</label>
-
-                            <input type="file"
-                                   id="quizpicture" name="quizpicture"
-                                   accept="image/png, image/jpeg"/>
-
-                            <label className="col-md-4 control-label" htmlFor="selectbasic">Select Basic</label>
-                            <div className="col-md-2">
-                                <select id="selectbasic" name="selectbasic" className="form-control">
-                                    <option value="1">Option one</option>
-                                    <option value="2">Option two</option>
-                                </select>
-                                <input id="keywords" name="keywords" id="quizkey" className="form-control"
-                                       placeholder="placeholder" type="text" required/>
+                                <input type="file"
+                                       id="quizpicture" name="quizpicture"
+                                       accept="image/png, image/jpeg" required/>
 
                             </div>
                         </div>
-                        <input type="submit"/>
+                    </div>
 
-                    </fieldset>
+
+
+
+                    <input type="submit" className="btn btn-primary" value="Submit"/>
                 </form>
             </div>
-        )
-    }
-}
 
-export default AddQuiz;
+
+        /*
+                        <form className="form-horizontal" onSubmit={e => this.addquiz(e)}>
+                            <fieldset>
+
+                                <legend>Add a quiz form</legend>
+
+                                <div className="form-group">
+
+                                    <div className="col-md-5">
+                                        <div className="input-group">
+                                            <span className="input-group-addon">Quiz title</span>
+                                            <input id="prependedtext" name="prependedtext" id="quizname"
+                                                   className="form-control"
+                                                   placeholder="placeholder" type="text" required/>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div className="form-group">
+
+                                    <div className="col-md-4">
+                                            <textarea className="form-control" id="textarea"
+                                                      name="textarea"/>
+                                    </div>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="avatar">Choose a profile picture:</label>
+
+                                    <input type="file"
+                                           id="quizpicture" name="quizpicture"
+                                           accept="image/png, image/jpeg"/>
+
+
+                                        <input id="keywords" name="keywords" id="quizkey" className="form-control"
+                                               placeholder="placeholder" type="text" required/>
+
+
+                                </div>
+                                <input type="submit"/>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                    */
+    )
+    }
+    }
+
+    export default AddQuiz;
