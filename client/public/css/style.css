@@ -26,12 +26,14 @@ html {
 
 body {
     color: #435757;
-    background: url('../img/factory.png'), no-repeat center ;
-    background-size: 100%;
-
+    background: url('../img/factory.png'),  center ;
+    background-size:cover;
+    background-repeat: no-repeat no-repeat;
     background-color: navajowhite;
+    background-position: bottom;
 
-    background-position: bottom 50px right 100px;
+
+
     font: 1.4em/1 'Noto Sans', sans-serif;
 
 }
@@ -167,6 +169,9 @@ body {
         background-color: #2f779d;
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
         flex-direction: column;
+    }
+    .menu_deco li{
+        border:solid white 2px;
     }
 }
 
