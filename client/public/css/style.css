@@ -26,8 +26,14 @@ html {
 
 body {
     color: #435757;
-    background: radial-gradient(#c6b5a2, #997f66);
+    background: url('../img/factory.png'), no-repeat center ;
+    background-size: 100%;
+
+    background-color: navajowhite;
+
+    background-position: bottom 50px right 100px;
     font: 1.4em/1 'Noto Sans', sans-serif;
+
 }
 
 /*.container {
@@ -154,8 +160,20 @@ body {
 
 
 /*animation*/
+@media(max-width: 550px){
+    .menu_deco {
+        display: flex;
+        justify-content: center !important;
+        background-color: #2f779d;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
+        flex-direction: column;
+    }
+}
 
+.card-body{
+    text-align: center;
+}
 
-
-
-
+.card img{
+    max-height: 180px;
+}

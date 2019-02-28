@@ -22,25 +22,18 @@ class App extends Component {
                 <div>
 
 
-                    <nav>
+                    <nav className='nav_bar'>
 
                         <ul className="menu_deco">
                             <li><Link to={'/'}>Home page</Link></li>
                             <li><Link to={'/about'}>About page</Link></li>
-                            <li>
-                                <div className="header-toogle">
-                                    <Link to={'/'} class="header-toogle-open"><img
-                                        src={HTTP_SERVER_PORT_PICTURES_PUBLIC + "menu.png"} width="30"
-                                        alt="Ouvrir Menu"/></Link>
-                                    <Link to={'/'} class="header-toogle-close"><img
-                                        src={HTTP_SERVER_PORT_PICTURES_PUBLIC + "menu-close.png"} width="30"
-                                        alt="Fermer Menu"/></Link>
-                                </div>
-                            </li>
+
                             <li><Link  to={'/AddQuiz'}>Add a quizz</Link>  </li>
+
 
                         </ul>
                     </nav>
+
                     <Switch>
                         <Route exact={true} path="/" component={Home}/>
                         <Route exact={true} path="/about" component={About}/>
