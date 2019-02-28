@@ -14,7 +14,7 @@ class Question extends Component {
 
     render() {
     console.log(this.props.q.txtAnswers);
-    if(this.props.q.txtAnswers.length==0){
+    if(this.props.q.txtAnswers!==null){
         return(
             <div>
             <form onSubmit={e => this.props.nextQuestion(e)}>

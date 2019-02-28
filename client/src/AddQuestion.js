@@ -88,6 +88,23 @@ class TxtAnswer extends React.Component {
         )
     }
 }
+class InputVideo extends React.Component {
+                        render(){
+                            return(
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label htmlFor="question">Upload a video/photo question</label>
+                                            <input  name="quizQuestion" id="question_File_Input"
+                                                    className="form-control input_txt"
+                                                    placeholder="" type="file" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            )
+                        }
+}
 
 class ImgAnswer extends React.Component {
     render() {
@@ -182,7 +199,8 @@ class AddQuestion extends React.Component {
         this.state = {
             current: null,
             lastquizz: null,
-            QuestionType: "txt"
+            QuestionType: "txt",
+            quizQuestionType:"false"
         }
         this.loadData();
     }
@@ -202,9 +220,11 @@ class AddQuestion extends React.Component {
     addquestion(e) {
         e.preventDefault();
         if(this.state.QuestionType==="txt"){
+
             let txtAnswers = [];
             let imgAnswers = [];
             let solutions = [];
+
             let y = document.getElementsByClassName("input_txt");
             let yz = document.getElementsByClassName("checkboxes");
             console.log(y);
@@ -227,9 +247,28 @@ class AddQuestion extends React.Component {
                 txtAnswers: txtAnswers,
                 imgAnswers: imgAnswers,
                 solutions: solutions,
-                points: 3
+                points: document.getElementById('scoring').value
             };
+            if(!this.state.quizQuestionType){
+                let imageQuestion= document.getElementById('question_File_Input');
+                const selectedFile = imageQuestion.files[0];
+                const data = new FormData();
+                data.append('file', selectedFile, selectedFile.name);
+                console.log(selectedFile.name);
+                console.log(data);
+                axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
+                console.log('Fin dupload');
 
+                question = {
+                    question:document.getElementById('question').value,
+                    video: selectedFile.name,
+                    txtAnswers: txtAnswers,
+                    imgAnswers: imgAnswers,
+                    solutions: solutions,
+                    points: document.getElementById('scoring').value
+                };
+            }
+            console.log(question);
             console.log(this.props.match.params.id);
             axios.patch(HTTP_SERVER_PORT + 'addquestion', {  // The json object to add in the collection
                 quizId:this.props.match.params.id,
@@ -241,16 +280,19 @@ class AddQuestion extends React.Component {
                 } else
                     console.log("Failed to add questionTXT");
             }).catch(err => console.log("Error =>", err));
-        }else {
+
+
+        }else if(this.state.QuestionType==="img"){
 
                 let txtAnswers = [];
                 let imgAnswers = [];
                 let solutions = [];
                 let y = document.getElementsByClassName("File_Inupt");
                 let yz = document.getElementsByClassName("checkboxes_File_Input");
-                let question = document.getElementById('question').value;
                 let NewImgAnswer = [];
                 console.log(y);
+
+
 
                 for (let i = 0; i < y.length; i++) {
                     if( y[i].files.length !== 0 ){
@@ -276,11 +318,18 @@ class AddQuestion extends React.Component {
                     axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
                     console.log('Fin dupload');
                 };
-
+            let question1 = {
+                question:document.getElementById('question').value,
+                video: null,
+                txtAnswers: txtAnswers,
+                imgAnswers: NewImgAnswer,
+                solutions: solutions,
+                points: document.getElementById('scoring').value
+            };
 
             axios.patch(HTTP_SERVER_PORT + 'addquestion', {  // The json object to add in the collection
                 quizId:this.props.match.params.id,
-                question: question,
+                question: question1,
             }).then(res => {
                 if (res.status === 200) {
                     this.setState({current: 1});
@@ -300,6 +349,19 @@ class AddQuestion extends React.Component {
             QuestionType: newType
         });
     }
+    setQuestionType(e) {
+        if(this.state.quizQuestionType){
+            this.setState({
+                quizQuestionType: false
+            });
+        }else{
+            this.setState({
+                quizQuestionType: true
+            });
+        }
+
+        console.log(this.state.quizQuestionType);
+    }
 
     render() {
         if (this.state.lastquizz == null) {
@@ -308,7 +370,11 @@ class AddQuestion extends React.Component {
         if (this.state.QuestionType === "txt") {
             var ShowAnswer = <TxtAnswer/>;
         } else if (this.state.QuestionType === "img") {
-            var ShowAnswer = <ImgAnswer/>;
+             var ShowAnswer = <ImgAnswer/>;
+        }
+
+        if (!this.state.quizQuestionType) {
+             var ShowQuestion = <InputVideo />;
         }
         return (
             <div className="container">
@@ -319,13 +385,32 @@ class AddQuestion extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <label htmlFor="question">Question</label>
                                 <input type="text" className="form-control" placeholder="" id="question"
-                                       required/>
+                                                   required/>
+
+                                {ShowQuestion}
+                                <div className="radio">
+                                    <label>
+                                        <input type="checkbox" onChange={e => this.setQuestionType(e)} name="quizQuestionType"
+                                               id="quizQuestionType" value="video" />Add a Video or Image
+                                    </label>
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
+                    <div className="row">
+                        <div className="col-md-6">
+                            <div className="form-group">
+                                <label htmlFor="quizscoring">Score for this question :</label>
+                                <label>
+                                    <input type="number" max="10" min="1" value="1"name="scoring"
+                                           id="scoring"  />Images
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
@@ -346,7 +431,6 @@ class AddQuestion extends React.Component {
                         </div>
                     </div>
                     {ShowAnswer}
-
 
 
 
