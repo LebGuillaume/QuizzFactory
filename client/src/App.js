@@ -27,7 +27,6 @@ class App extends Component {
                         <ul className="menu_deco">
                             <li><Link to={'/'}>Home page</Link></li>
                             <li><Link to={'/about'}>About page</Link></li>
-
                             <li><Link  to={'/AddQuiz'}>Add a quizz</Link>  </li>
 
 
@@ -39,7 +38,7 @@ class App extends Component {
                         <Route exact={true} path="/about" component={About}/>
                         <Route exact={true} path="/quizz/:id" component={Quizz}/>
                         <Route exact={true} path="/AddQuiz" component={AddQuiz}/>
-                        <Route exact={true} path="/AddQuestion" component={AddQuestion}/>
+                        <Route exact={true} path="/AddQuestion/:id" component={AddQuestion}/>
                         <Route path="*" component={() => <p>Page Not Found</p>}/>
                     </Switch>
                 </div>
