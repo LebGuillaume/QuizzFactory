@@ -249,7 +249,7 @@ class AddQuestion extends React.Component {
                 txtAnswers: txtAnswers,
                 imgAnswers: imgAnswers,
                 solutions: solutions,
-                points: document.getElementById('scoring').value
+                points:  parseInt(document.getElementById('scoring').value)
             };
             if(!this.state.quizQuestionType){
                 let imageQuestion= document.getElementById('question_File_Input');
@@ -268,7 +268,7 @@ class AddQuestion extends React.Component {
                     txtAnswers: txtAnswers,
                     imgAnswers: imgAnswers,
                     solutions: solutions,
-                    points: document.getElementById('scoring').value
+                    points: parseInt(document.getElementById('scoring').value)
                 };
             }
             console.log(question);
@@ -409,7 +409,7 @@ class AddQuestion extends React.Component {
                                 <label htmlFor="quizscoring">Score for this question :</label>
                                 <label>
                                     <input type="number" max="10" min="1" defaultValue="1"name="scoring"
-                                           id="scoring"  />Images
+                                           id="scoring"  />
                                 </label>
                             </div>
                         </div>

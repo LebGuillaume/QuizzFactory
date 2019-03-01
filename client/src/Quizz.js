@@ -62,8 +62,7 @@ class Question extends Component {
                         return <li><input type='checkbox' id={x} name={x}/> <label label htmlFor={x}>
 
 
-                            <img
-                                src={HTTP_SERVER_PORT_PICTURES + x}/></label></li>
+                            <img src={HTTP_SERVER_PORT_PICTURES + x}/></label></li>
 
                     })}
                 </ul>
@@ -173,7 +172,7 @@ class Quizz extends Component {
         }
 
         if(this.isEquivalent(choices,this.state.quizz.questions[this.state.current].solutions)){
-                let newScore = this.state.score + this.state.quizz.questions[this.state.current].points;
+                let newScore = parseInt(this.state.score + this.state.quizz.questions[this.state.current].points);
                 console.log(newScore);
                 this.setState({score : newScore});
 

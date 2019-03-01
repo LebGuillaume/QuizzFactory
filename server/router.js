@@ -62,6 +62,25 @@ router
     });
         console.log(10);
 })
+    .patch('/updatequiz', (req, res) => {
+        Quizz.findOneAndUpdate({   // Find the data
+            _id: req.body.quizId
+        }, {
+            $set: {  // Add something in the array citations
+                name: req.body.name,
+                description: req.body.description,
+                published: req.body.published,
+                keywords: req.body.keywords,
+                icon: req.body.icon,
+            }
+
+        }, err => {
+            if (err)
+                res.status(500).send(err)
+            else res.json({ok: true});
+        });
+        console.log(10);
+    })
     .post('/upload', (req, res, next) => {
         console.log("files", req.files);
         req.files.file.mv(__dirname + '/resources/pictures/' + req.files.file.name,
@@ -71,6 +90,17 @@ router
                 res.json({file: req.files.file.name});
             }
         );
+    })
+    .delete('/deletequiz', (req, res) => {
+        //console.log(req);
+        Quizz.findOneAndDelete({   // Find the data
+            _id: req.body.quizId
+        }, err => {
+            if (err)
+                res.status(500).send(err)
+            else res.json({ok: true});
+        });
+        console.log(10);
     })
     .use((req, res) => {
         res.status(400);

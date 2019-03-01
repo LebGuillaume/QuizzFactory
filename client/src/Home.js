@@ -22,7 +22,7 @@ class Thumbnail extends Component {
                             <p>{this.props.quizz.name}</p>
                         </h4>
                         <p className="card-text">{this.props.quizz.description}</p>
-
+                        <Link to={'./editquiz/' + this.props.quizz._id}><i className="fas fa-cog"></i></Link>
                     </div>
                 </div>
             </div>

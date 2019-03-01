@@ -6,6 +6,7 @@ import About from "./About.js";
 import Quizz from "./Quizz.js";
 import AddQuiz from"./AddQuiz.js"
 import AddQuestion from"./AddQuestion.js"
+import EditQuiz from"./EditQuiz.js"
 
 import {quizzes, users} from './examples';
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
@@ -39,6 +40,7 @@ class App extends Component {
                         <Route exact={true} path="/quizz/:id" component={Quizz}/>
                         <Route exact={true} path="/AddQuiz" component={AddQuiz}/>
                         <Route exact={true} path="/AddQuestion/:id" component={AddQuestion}/>
+                        <Route exact={true} path="/editquiz/:id" component={EditQuiz}/>
                         <Route path="*" component={() => <p>Page Not Found</p>}/>
                     </Switch>
                 </div>
